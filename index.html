@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Групповой чат</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Экран входа / регистрации -->
+  <main id="auth-view" class="auth">
+    <div class="card">
+      <h1>💬 Групповой чат</h1>
+
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="login" role="tab">Вход</button>
+        <button type="button" class="tab" data-tab="register" role="tab">Регистрация</button>
+      </div>
+
+      <form id="login-form" autocomplete="on">
+        <label>Имя пользователя
+          <input name="username" type="text" autocomplete="username" required>
+        </label>
+        <label>Пароль
+          <input name="password" type="password" autocomplete="current-password" required>
+        </label>
+        <button type="submit" class="primary">Войти</button>
+      </form>
+
+      <form id="register-form" autocomplete="on" hidden>
+        <label>Имя пользователя
+          <input name="username" type="text" autocomplete="username" required>
+        </label>
+        <label>Email <span class="muted">(необязательно)</span>
+          <input name="email" type="email" autocomplete="email">
+        </label>
+        <label>Пароль
+          <input name="password" type="password" autocomplete="new-password" required minlength="6">
+        </label>
+        <label>Повторите пароль
+          <input name="password2" type="password" autocomplete="new-password" required minlength="6">
+        </label>
+        <button type="submit" class="primary">Зарегистрироваться</button>
+      </form>
+
+      <p id="auth-error" class="error" role="alert" hidden></p>
+    </div>
+  </main>
+
+  <!-- Экран чата -->
+  <div id="chat-view" class="chat" hidden>
+    <header>
+      <div class="title">
+        <strong>Общий чат</strong>
+        <span id="status" class="status connecting"><i></i><span id="status-text">Подключение…</span></span>
+      </div>
+      <div class="user">
+        <span id="me" class="muted"></span>
+        <button id="logout-btn" type="button">Выйти</button>
+      </div>
+    </header>
+
+    <div id="messages" class="messages" aria-live="polite"></div>
+
+    <form id="message-form" class="composer" autocomplete="off">
+      <input id="message-input" type="text" placeholder="Напишите сообщение…" maxlength="1000" disabled>
+      <button id="send-btn" type="submit" class="primary" disabled>Отправить</button>
+    </form>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
